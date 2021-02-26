@@ -1,2 +1,3 @@
 #! /bin/sh
-docker restart -t 10 Valheim
+docker stop -t 10 Valheim
+docker start Valheim
