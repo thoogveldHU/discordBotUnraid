@@ -1,5 +1,6 @@
 import discord
 import subprocess
+import os
 
 client = discord.Client()
 
@@ -13,7 +14,8 @@ async def on_message(message):
         if message.content.startswith("$restart"):
             if message.author.guild_permissions.administrator: #isAdmin
                 await message.channel.send("Restarting the Valheim Server now.")
-                subprocess.call(['sh','./restartValheimDocker.sh'])
+                os.system('ls')
+                #subprocess.call(['sh','./restartValheimDocker.sh'])
             else:
                 await message.channel.send("You're not an admin.")
 
