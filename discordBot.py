@@ -44,11 +44,11 @@ async def on_message(message):
         elif message.content.lower().startswith("$ip"): #Works
             await message.reply(str(socket.gethostbyname('valheim.hoogveld.me')))
 
-        elif message.content.lower().startswith("$save_backup"): #needs works
+        elif message.content.lower().startswith("$save_backup"): #Works
             try:         
                 currentWorldFolder = 'currentFolder/.config' #CurrentFolder is mapped in the runMe.sh ---> currentFolder = /mnt/user/appdata/valheim2
                 backupFolder = 'currentFolder/Backups/'
-                fileName = str(datetime.datetime.now()).replace(' ','_')
+                fileName = str(datetime.datetime.now()).replace(' ','_') + '.zip'
 
                 #Zip
                 zipf = zipfile.ZipFile(fileName,'w',zipfile.ZIP_DEFLATED)
@@ -59,11 +59,18 @@ async def on_message(message):
                 shutil.move(fileName,backupFolder)
                 await message.add_reaction('👍')
             except Exception as e:
-                await message.channel.send(str(e))
+                #await message.channel.send(str(e))
                 await message.add_reaction('👎')
 
 
         elif message.content.lower().startswith('$download_backup'): #needs work
+            backupFolder = 'currentFolder/Backups/'
+
+            fileNames = ''
+            for file in os.listdir(backupFolder):
+                fileNames = fileNames + file + '\n'
+
+            await message.channel.send(fileNames)
             await message.add_reaction('👍')
             pass
 
