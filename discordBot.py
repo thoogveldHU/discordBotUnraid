@@ -114,7 +114,6 @@ async def on_message(message):
                     
                     #send the link to the channel
                     await message.channel.send(website)
-                    await message.channel.send(full_name_of_file)
                     await message.add_reaction('👍')
                 else:
                     await message.channel.send('Need to know which backup you want nibba')
