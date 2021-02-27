@@ -66,17 +66,20 @@ async def on_message(message):
 
 
         elif message.content.lower().startswith('$download_backup'): #needs work
-            backupFolder = 'currentFolder/Backups/'
+            try:
+                backupFolder = 'currentFolder/Backups/'
 
-            fileNames = ''
-            for i,file in enumerate(os.listdir(backupFolder)):
-                if str(file).endswith(".zip"):
-                    fileNames = fileNames + i + '. ' + file + '\n'
-                    filesDict[i] = file
+                fileNames = ''
+                for i,file in enumerate(os.listdir(backupFolder)):
+                    if str(file).endswith(".zip"):
+                        fileNames = fileNames + i + '. ' + file + '\n'
+                        filesDict[i] = file
 
-            await message.channel.send(filesDict)
-            await message.channel.send(fileNames)
-            await message.add_reaction('👍')
+                await message.channel.send(filesDict)
+                await message.channel.send(fileNames)
+                await message.add_reaction('👍')
+            except Exception as e:
+                await message.channel.send(e)
 
 def zipdir(path, ziph):
     # ziph is zipfile handle
