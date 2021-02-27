@@ -110,7 +110,7 @@ async def on_message(message):
                     valheimDir.upload_local_file(full_name_of_file) #ERROR HERE
 
                     #create a link to the file
-                    website = 'https://seafile.hoogveld.me/d/e050bf894bb749339c06/{}'.format(str(filesDict[intFound]))
+                    website = 'https://seafile.hoogveld.me/d/e050bf894bb749339c06/files/?p=/{}'.format(str(filesDict[intFound]))
                     
                     #send the link to the channel
                     await message.channel.send(website)
