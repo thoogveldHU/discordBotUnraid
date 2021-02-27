@@ -44,8 +44,8 @@ async def on_message(message):
 
         elif message.content.lower().startswith("$save_backup"): #needs works
             try:         
-                currentWorldFolder = '../appdata/valheim2/.config'
-                backupFolder = '/mnt/user/appdata/valheim2/Backups/'
+                currentWorldFolder = 'currentFolder/.config' #CurrentFolder is mapped in the runMe.sh ---> currentFolder = /mnt/user/appdata/valheim2
+                backupFolder = 'currentFolder/Backups/'
                 
                 #Zip
                 zipf = zipfile.ZipFile("python.zip",'w',zipfile.ZIP_DEFLATED)
