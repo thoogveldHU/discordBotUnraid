@@ -72,8 +72,9 @@ async def on_message(message):
                 fileNames = ''
                 for i,file in enumerate(os.listdir(backupFolder)):
                     if str(file).endswith(".zip"):
-                        #fileNames = fileNames + str(i) + '. ' + file + '\n'
                         filesDict[i] = file
+                    else:
+                        i = i - 1
 
                 await message.channel.send(filesDict)
                 #await message.channel.send(fileNames)
