@@ -5,6 +5,7 @@ import socket
 import zipfile
 import shutil
 import datetime
+from filestack import Client
 
 client = discord.Client()
 
@@ -93,8 +94,9 @@ async def on_message(message):
                         pass
                 
                 if intFound != -1:
-                    fileName = backupFolder + str(filesDict[intFound])
-                    await message.channel.send(file=discord.File(fileName))
+                    website = 'https://seafile.hoogveld.me/d/e050bf894bb749339c06/{}'.format(str(filesDict[intFound]))
+                    #fileName = backupFolder + str(filesDict[intFound])
+                    await message.channel.send(file=discord.File(website))
                     await message.add_reaction('👍')
                 else:
                     await message.channel.send('Need to know which backup you want nibba')
