@@ -55,7 +55,8 @@ async def on_message(message):
                 #Place in backup folder. The python.zip is in the root of the docker container.
                 os.rename('python.zip',backupFolder)
                 await message.add_reaction('👍')
-            except:
+            except Exception as e:
+                await message.channel.send(str(e))
                 await message.add_reaction('👎')
 
 
