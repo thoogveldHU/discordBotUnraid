@@ -75,7 +75,7 @@ async def on_message(message):
                         fileNames = fileNames + i + '. ' + file + '\n'
                         filesDict[str(i)] = file
 
-                await message.channel.send(filesDict)
+                #await message.channel.send(filesDict)
                 await message.channel.send(fileNames)
                 await message.add_reaction('👍')
             except Exception as e:
