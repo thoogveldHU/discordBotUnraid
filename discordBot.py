@@ -113,7 +113,8 @@ async def on_message(message):
                     website = 'https://seafile.hoogveld.me/d/e050bf894bb749339c06/{}'.format(str(filesDict[intFound]))
                     
                     #send the link to the channel
-                    await message.channel.send(website,full_name_of_file)
+                    await message.channel.send(website)
+                    await message.channel.send(full_name_of_file)
                     await message.add_reaction('👍')
                 else:
                     await message.channel.send('Need to know which backup you want nibba')
