@@ -107,7 +107,7 @@ async def on_message(message):
 
                     #upload the file into this directory
                     full_name_of_file = backupFolder + str(filesDict[intFound])
-                    #valheimDir.upload_local_file(full_name_of_file)
+                    valheimDir.upload_local_file(full_name_of_file)
 
                     #create a link to the file
                     website = 'https://seafile.hoogveld.me/d/e050bf894bb749339c06/{}'.format(str(filesDict[intFound]))
