@@ -93,8 +93,8 @@ async def on_message(message):
                         pass
                 
                 if intFound != -1:
-                    await message.channel.send(filesDict)
-                    await message.channel.send(filesDict[intFound])
+                    fileName = backupFolder + str(filesDict[intFound])
+                    await message.channel.send(file=discord.File(fileName))
                     await message.add_reaction('👍')
                 else:
                     await message.channel.send('Need to know which backup you want nibba')
