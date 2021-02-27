@@ -4,6 +4,7 @@ import os
 import socket
 import zipfile
 import shutil
+import datetime
 
 client = discord.Client()
 
@@ -47,14 +48,15 @@ async def on_message(message):
             try:         
                 currentWorldFolder = 'currentFolder/.config' #CurrentFolder is mapped in the runMe.sh ---> currentFolder = /mnt/user/appdata/valheim2
                 backupFolder = 'currentFolder/Backups/'
-                
+                fileName = str(datetime.datetime.now()).replace(' ','_')
+
                 #Zip
-                zipf = zipfile.ZipFile("python.zip",'w',zipfile.ZIP_DEFLATED)
+                zipf = zipfile.ZipFile(fileName,'w',zipfile.ZIP_DEFLATED)
                 zipdir(currentWorldFolder,zipf)
                 zipf.close()
 
                 #Place in backup folder. The python.zip is in the root of the docker container.
-                shutil.move('python.zip',backupFolder)
+                shutil.move(fileName,backupFolder)
                 await message.add_reaction('👍')
             except Exception as e:
                 await message.channel.send(str(e))
