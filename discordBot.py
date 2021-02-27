@@ -5,7 +5,7 @@ import socket
 import zipfile
 import shutil
 import datetime
-from filestack import Client
+import seafileapi
 
 client = discord.Client()
 
@@ -94,9 +94,26 @@ async def on_message(message):
                         pass
                 
                 if intFound != -1:
+
+                    #Getting the password from the server from the txt file
+                    SEAFILE_PASSWORD = ''
+                    with open('seafilepassword.txt') as f : SEAFILE_PASSWORD = f.readlines()[0]
+
+                    #Getting the directory we need to upload to
+                    c = seafileapi.connect('https://seafile.hoogveld.me', 'twan@hoogveld.me', '{}'.format(SEAFILE_PASSWORD))
+                    repos = c.repos.list_repos()
+                    valheimRepo = [repo for repo in repos if repo.name == 'backups_valheim'][0]
+                    valheimDir = valheimRepo.get_dir('/')
+
+                    #upload the file into this directory
+                    full_name_of_file = backupFolder + str(filesDict[intFound])
+                    valheimDir.upload_local_file(full_name_of_file)
+
+                    #create a link to the file
                     website = 'https://seafile.hoogveld.me/d/e050bf894bb749339c06/{}'.format(str(filesDict[intFound]))
-                    #fileName = backupFolder + str(filesDict[intFound])
-                    await message.channel.send(file=discord.File(website))
+                    
+                    #send the link to the channel
+                    await message.channel.send(website)
                     await message.add_reaction('👍')
                 else:
                     await message.channel.send('Need to know which backup you want nibba')
