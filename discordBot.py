@@ -83,7 +83,7 @@ async def on_message(message):
 
         elif message.content.lower().startswith('$download_backup'): #needs work
             try:
-                backupFolder = 'currentFolder/Backups/'
+                backupFolder = '/currentFolder/Backups/'
                 
                 intFound = -1
                 for word in message.content:
@@ -107,7 +107,7 @@ async def on_message(message):
 
                     #upload the file into this directory
                     full_name_of_file = backupFolder + str(filesDict[intFound])
-                    valheimDir.upload_local_file(full_name_of_file)
+                    valheimDir.upload_local_file(full_name_of_file) #ERROR HERE
 
                     #create a link to the file
                     website = 'https://seafile.hoogveld.me/d/e050bf894bb749339c06/{}'.format(str(filesDict[intFound]))
