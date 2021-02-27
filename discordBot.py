@@ -65,7 +65,7 @@ async def on_message(message):
                 await message.add_reaction('👎')
 
 
-        elif message.content.lower().startswith('$download_backup'): #needs work
+        elif message.content.lower().startswith('$list_backup'): #needs work
             try:
                 backupFolder = 'currentFolder/Backups/'
 
@@ -76,6 +76,22 @@ async def on_message(message):
                         filesDict[i] = file
 
                 await message.channel.send(filesDict)
+                await message.add_reaction('👍')
+            except Exception as e:
+                await message.channel.send(e)
+
+        elif message.content.lower().startswith('$download_backup'): #needs work
+            try:
+                backupFolder = 'currentFolder/Backups/'
+                
+                intFound = -1
+                for word in message.content:
+                    try:
+                        intFound = int(word)
+                    except Exception:
+                        pass
+
+                await message.channel.send(filesDict[intFound])
                 await message.add_reaction('👍')
             except Exception as e:
                 await message.channel.send(e)
