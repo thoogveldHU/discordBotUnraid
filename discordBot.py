@@ -8,6 +8,8 @@ import datetime
 
 client = discord.Client()
 
+filesDict = {}
+
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
@@ -67,12 +69,14 @@ async def on_message(message):
             backupFolder = 'currentFolder/Backups/'
 
             fileNames = ''
-            for file in os.listdir(backupFolder):
-                fileNames = fileNames + file + '\n'
+            for i,file in enumerate(os.listdir(backupFolder)):
+                if str(file).endswith(".zip"):
+                    fileNames = fileNames + i + '. ' + file + '\n'
+                    filesDict[i] = file
 
+            await message.channel.send(filesDict)
             await message.channel.send(fileNames)
             await message.add_reaction('👍')
-            pass
 
 def zipdir(path, ziph):
     # ziph is zipfile handle
