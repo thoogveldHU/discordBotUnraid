@@ -103,14 +103,15 @@ async def on_message(message):
                     c = seafileapi.connect('https://seafile.hoogveld.me', 'twan@hoogveld.me', '{}'.format(SEAFILE_PASSWORD))
                     repos = c.repos.list_repos()
                     valheimRepo = [repo for repo in repos if repo.name == 'backups_valheim'][0]
-                    valheimDir = valheimRepo.get_dir('/')
+                    await message.channel.send(valheimRepo.name)
+                    #valheimDir = valheimRepo.get_dir('/')
 
                     #upload the file into this directory
-                    full_name_of_file = backupFolder + str(filesDict[intFound])
-                    valheimDir.upload_local_file(full_name_of_file)
+                    #full_name_of_file = backupFolder + str(filesDict[intFound])
+                    #valheimDir.upload_local_file(full_name_of_file)
 
                     #create a link to the file
-                    website = 'https://seafile.hoogveld.me/d/e050bf894bb749339c06/{}'.format(str(filesDict[intFound]))
+                    #website = 'https://seafile.hoogveld.me/d/e050bf894bb749339c06/{}'.format(str(filesDict[intFound]))
                     
                     #send the link to the channel
                     await message.channel.send(website)
