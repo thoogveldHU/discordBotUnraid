@@ -88,11 +88,17 @@ async def on_message(message):
                 for word in message.content:
                     try:
                         intFound = int(word)
+                        break
                     except Exception:
                         pass
+                
+                if intFound != -1:
+                    await message.channel.send(filesDict)
+                    await message.channel.send(filesDict[intFound])
+                    await message.add_reaction('👍')
+                else:
+                    await message.channel.send('Need to know which backup you want nibba')
 
-                await message.channel.send(filesDict[intFound])
-                await message.add_reaction('👍')
             except Exception as e:
                 await message.channel.send(e)
 
