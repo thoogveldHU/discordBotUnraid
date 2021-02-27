@@ -72,10 +72,10 @@ async def on_message(message):
                 fileNames = ''
                 for i,file in enumerate(os.listdir(backupFolder)):
                     if str(file).endswith(".zip"):
-                        fileNames = fileNames + i + '. ' + file + '\n'
-                        #filesDict[str(i)] = file
+                        #fileNames = fileNames + str(i) + '. ' + file + '\n'
+                        filesDict[i] = file
 
-                #await message.channel.send(filesDict)
+                await message.channel.send(filesDict)
                 #await message.channel.send(fileNames)
                 await message.add_reaction('👍')
             except Exception as e:
