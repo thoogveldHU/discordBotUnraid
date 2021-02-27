@@ -45,7 +45,7 @@ async def on_message(message):
         elif message.content.lower().startswith("$save_backup"): #needs works
             try:         
                 currentWorldFolder = '../appdata/valheim2/.config'
-                backupFolder = '../appdata/valheim2/Backups/'
+                backupFolder = '/mnt/user/appdata/valheim2/Backups/'
                 
                 #Zip
                 zipf = zipfile.ZipFile("python.zip",'w',zipfile.ZIP_DEFLATED)
