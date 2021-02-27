@@ -3,6 +3,7 @@ import subprocess
 import os
 import socket
 import zipfile
+import shutil
 
 client = discord.Client()
 
@@ -53,7 +54,7 @@ async def on_message(message):
                 zipf.close()
 
                 #Place in backup folder. The python.zip is in the root of the docker container.
-                os.rename('python.zip',backupFolder)
+                shutil.move('python.zip',backupFolder)
                 await message.add_reaction('👍')
             except Exception as e:
                 await message.channel.send(str(e))
